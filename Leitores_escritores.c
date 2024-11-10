@@ -67,3 +67,5 @@ int main() {
 
     return 0;
 }
+
+//Este código implementa um controle de acesso a uma variável compartilhada onde múltiplos leitores podem acessar a variável simultaneamente, mas apenas um escritor pode modificar o dado a cada vez. Utilizamos mutexes para sincronizar as threads e evitar condições de corrida.
