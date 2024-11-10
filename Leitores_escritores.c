@@ -3,17 +3,17 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-pthread_mutex_t mutex_dados = PTHREAD_MUTEX_INITIALIZER;
+pthread_mutex_t mutex_dados =PTHREAD_MUTEX_INITIALIZER;
 pthread_mutex_t mutex_leitores = PTHREAD_MUTEX_INITIALIZER;
-int contador_leitores = 0;
-int dados = 0; // Dado compartilhado
+int contador_leitores =0;
+int dados = 0; 
 
 void *escritor(void *arg) {
     int id = *(int *)arg;
 
     while (1) {
         pthread_mutex_lock(&mutex_dados);
-        dados++; // Simula a escrita
+        dados++;
         printf("Escritor %d escreveu o valor %d\n", id, dados);
         pthread_mutex_unlock(&mutex_dados);
         sleep(1);
@@ -22,7 +22,7 @@ void *escritor(void *arg) {
 }
 
 void *leitor(void *arg) {
-    int id = *(int *)arg;
+    int id= *(int *)arg;
 
     while (1) {
         pthread_mutex_lock(&mutex_leitores);
@@ -32,7 +32,7 @@ void *leitor(void *arg) {
         }
         pthread_mutex_unlock(&mutex_leitores);
 
-        // Leitura dos dados
+       
         printf("Leitor %d leu o valor %d\n", id, dados);
 
         pthread_mutex_lock(&mutex_leitores);
